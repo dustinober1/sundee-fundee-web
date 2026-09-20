@@ -477,6 +477,9 @@ const postEnhancementsBySlug: Record<string, BlogPostEnhancement> = {
   "strength-training-with-irregular-periods": {
     articleIntent: "protocol",
   },
+  "strength-training-with-hypothyroidism-women": {
+    articleIntent: "symptom-audit",
+  },
   "stopping-birth-control-strength-training": {
     articleIntent: "timeline",
   },
