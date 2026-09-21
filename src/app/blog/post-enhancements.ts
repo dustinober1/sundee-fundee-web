@@ -557,6 +557,9 @@ const postEnhancementsBySlug: Record<string, BlogPostEnhancement> = {
   "wrist-pain-lifting-weights-modifications": {
     articleIntent: "checklist",
   },
+  "strength-training-during-ivf-fertility-treatment": {
+    articleIntent: "timeline",
+  },
   "strength-training-during-pregnancy-trimester-guide": {
     articleIntent: "timeline",
   },
