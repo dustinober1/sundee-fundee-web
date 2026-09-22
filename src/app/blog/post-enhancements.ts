@@ -360,6 +360,9 @@ const postEnhancementsBySlug: Record<string, BlogPostEnhancement> = {
   "menstrual-cycle-recovery-metrics-wearables": {
     articleIntent: "metric-explainer",
   },
+  "menstrual-cycle-scale-weight-fluctuations": {
+    articleIntent: "metric-explainer",
+  },
   "minimum-effective-dose-strength-training-women": {
     articleIntent: "protocol",
   },
