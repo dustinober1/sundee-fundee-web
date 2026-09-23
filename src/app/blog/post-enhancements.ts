@@ -541,6 +541,9 @@ const postEnhancementsBySlug: Record<string, BlogPostEnhancement> = {
   "working-out-with-period-diarrhea": {
     articleIntent: "decision-guide",
   },
+  "vitamin-d-deficiency-strength-training-women": {
+    articleIntent: "symptom-audit",
+  },
   "when-hrv-is-low-strength-training": {
     articleIntent: "symptom-audit",
   },
