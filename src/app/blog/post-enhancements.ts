@@ -426,6 +426,9 @@ const postEnhancementsBySlug: Record<string, BlogPostEnhancement> = {
   "perimenopause-strength-training-programming": {
     articleIntent: "timeline",
   },
+  "lifting-with-diastasis-recti-strength-training": {
+    articleIntent: "timeline",
+  },
   "postpartum-return-to-lifting-timeline": {
     articleIntent: "timeline",
   },
