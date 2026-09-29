@@ -450,6 +450,9 @@ const postEnhancementsBySlug: Record<string, BlogPostEnhancement> = {
   "seasonal-allergies-strength-training-women": {
     articleIntent: "decision-guide",
   },
+  "should-women-use-a-lifting-belt": {
+    articleIntent: "decision-guide",
+  },
   "shoulder-pain-bench-press-modifications": {
     articleIntent: "checklist",
   },
