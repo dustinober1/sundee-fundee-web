@@ -511,6 +511,9 @@ const postEnhancementsBySlug: Record<string, BlogPostEnhancement> = {
   "strength-training-around-minor-injuries": {
     articleIntent: "checklist",
   },
+  "strength-training-with-asthma-women": {
+    articleIntent: "symptom-audit",
+  },
   "strength-plateau-women-who-lift": {
     articleIntent: "decision-guide",
   },
