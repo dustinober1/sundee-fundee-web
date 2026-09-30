@@ -532,6 +532,9 @@ const postEnhancementsBySlug: Record<string, BlogPostEnhancement> = {
   "top-set-back-off-set-programming": {
     articleIntent: "protocol",
   },
+  "tracking-cycle-phases-for-training": {
+    articleIntent: "compare-options",
+  },
   "tempo-training-for-strength-women": {
     articleIntent: "protocol",
   },
