@@ -273,6 +273,9 @@ const postEnhancementsBySlug: Record<string, BlogPostEnhancement> = {
   "how-close-to-failure-strength-training-women": {
     articleIntent: "compare-options",
   },
+  "how-long-to-see-strength-training-results-women": {
+    articleIntent: "timeline",
+  },
   "knee-pain-squat-modifications": {
     articleIntent: "checklist",
   },
