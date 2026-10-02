@@ -276,6 +276,9 @@ const postEnhancementsBySlug: Record<string, BlogPostEnhancement> = {
   "how-long-to-see-strength-training-results-women": {
     articleIntent: "timeline",
   },
+  "intermittent-fasting-strength-training-women": {
+    articleIntent: "compare-options",
+  },
   "knee-pain-squat-modifications": {
     articleIntent: "checklist",
   },
