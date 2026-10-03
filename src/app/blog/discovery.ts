@@ -85,6 +85,16 @@ function normalize(value: string) {
   return value.trim().toLowerCase();
 }
 
+// The WebSite JSON-LD SearchAction targets /blog?query={search_term_string},
+// so the library must honor that parameter name.
+export function searchQueryFromUrl(search: string): string {
+  return new URLSearchParams(search).get("query")?.trim() ?? "";
+}
+
+export function blogSearchUrl(value: string): string {
+  return value ? `/blog?query=${encodeURIComponent(value)}` : "/blog";
+}
+
 function matchesSearch(post: BlogDiscoveryItem, query: string) {
   if (!query) {
     return true;

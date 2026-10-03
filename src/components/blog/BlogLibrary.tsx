@@ -1,13 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import {
   ARTICLE_INTENT_LABELS,
   BLOG_PATHWAYS,
   INTERACTIVE_TYPE_LABELS,
+  blogSearchUrl,
   filterBlogPosts,
   getPathwayPosts,
+  searchQueryFromUrl,
   type BlogDiscoveryItem,
   type BlogSortOption,
 } from "@/app/blog/discovery";
@@ -17,6 +19,19 @@ type BlogLibraryProps = {
   posts: BlogDiscoveryItem[];
   topicOptions: Array<{ label: string; slug: string }>;
 };
+
+function subscribeToUrlSearch(onChange: () => void) {
+  window.addEventListener("popstate", onChange);
+  return () => window.removeEventListener("popstate", onChange);
+}
+
+function getUrlSearch() {
+  return window.location.search;
+}
+
+function syncSearchToUrl(value: string) {
+  window.history.replaceState(null, "", blogSearchUrl(value));
+}
 
 const sortOptions: Array<{ label: string; value: BlogSortOption }> = [
   { label: "Recommended", value: "recommended" },
@@ -31,10 +46,21 @@ const articleIntentOptions = Object.entries(ARTICLE_INTENT_LABELS).map(([value, 
 }));
 
 export function BlogLibrary({ posts, topicOptions }: BlogLibraryProps) {
-  const [search, setSearch] = useState("");
+  // The ?query= param (from the WebSite SearchAction) seeds the search box.
+  // Read it through useSyncExternalStore so the server render matches the
+  // prerendered HTML and the real URL takes over after hydration. The typed
+  // value wins until the user clears it.
+  const [typedSearch, setTypedSearch] = useState<string | null>(null);
+  const urlSearch = useSyncExternalStore(subscribeToUrlSearch, getUrlSearch, () => "");
+  const search = typedSearch ?? searchQueryFromUrl(urlSearch);
   const [topicSlug, setTopicSlug] = useState("all");
   const [articleIntent, setArticleIntent] = useState("all");
   const [sort, setSort] = useState<BlogSortOption>("recommended");
+
+  function updateSearch(value: string) {
+    setTypedSearch(value);
+    syncSearchToUrl(value);
+  }
 
   const results = filterBlogPosts(posts, {
     articleIntent,
@@ -62,7 +88,7 @@ export function BlogLibrary({ posts, topicOptions }: BlogLibraryProps) {
           <button
             type="button"
             onClick={() => {
-              setSearch("");
+              updateSearch("");
               setTopicSlug("all");
               setArticleIntent("all");
               setSort("recommended");
@@ -82,7 +108,7 @@ export function BlogLibrary({ posts, topicOptions }: BlogLibraryProps) {
                 key={pathway.slug}
                 type="button"
                 onClick={() => {
-                  setSearch("");
+                  updateSearch("");
                   setTopicSlug(pathway.topicSlug ?? "all");
                   setArticleIntent(pathway.articleIntents?.[0] ?? "all");
                   setSort("recommended");
@@ -113,7 +139,7 @@ export function BlogLibrary({ posts, topicOptions }: BlogLibraryProps) {
             <input
               type="search"
               value={search}
-              onChange={(event) => setSearch(event.target.value)}
+              onChange={(event) => updateSearch(event.target.value)}
               placeholder="Search titles, outcomes, or article angles"
               className="mt-3 w-full rounded-2xl border border-border bg-cream px-4 py-3 text-navy outline-none transition placeholder:text-muted focus:border-navy/45"
             />
