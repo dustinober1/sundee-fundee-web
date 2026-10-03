@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { track } from "@vercel/analytics";
 import { AppStoreButtons } from "../AppStoreButtons";
 import {
   defaultScienceSimulatorState,
@@ -198,13 +197,7 @@ export function ScienceRecommendationSimulator() {
     key: T,
     value: ScienceSimulatorState[T],
   ) {
-    const nextState = { ...state, [key]: value };
-    const nextRecommendation = getScienceRecommendation(nextState);
-    setState(nextState);
-    track("science_simulator_interaction", {
-      control: key,
-      recommendation: nextRecommendation.action,
-    });
+    setState((current) => ({ ...current, [key]: value }));
   }
 
   return (

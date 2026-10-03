@@ -1,6 +1,5 @@
 "use client";
 
-import { track } from "@vercel/analytics";
 import { buildAppStoreUrl } from "../lib/app-store-links";
 
 type Props = {
@@ -23,12 +22,6 @@ export function AppStoreButtons({
       href={buildAppStoreUrl({ campaign: utmCampaign, content: utmContent })}
       target="_blank"
       rel="noopener noreferrer"
-      onClick={() => {
-        track("app_store_click", {
-          campaign: utmCampaign ?? "unknown",
-          content: utmContent ?? "",
-        });
-      }}
       className={`${base} ${size} bg-orange text-cream hover:opacity-90`}
     >
       {compact ? "Open in App Store" : "Get Sundee Fundee on the App Store"}
