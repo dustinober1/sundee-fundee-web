@@ -22,9 +22,7 @@ import {
   SITE_URL,
 } from "@/lib/site";
 import { workoutPlans } from "@/lib/workout-plans";
-import { formatDate, posts } from "./blog/posts";
-
-const latestPosts = posts.slice(0, 3);
+import { formatDate, getPosts } from "./blog/posts";
 
 const paths = [
   {
@@ -112,6 +110,8 @@ export const metadata: Metadata = {
 };
 
 export default function Landing() {
+  const latestPosts = getPosts().slice(0, 3);
+
   return (
     <>
       <JsonLd

@@ -7,7 +7,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { buildBreadcrumbJsonLd, buildItemListJsonLd } from "@/lib/seo";
 import { SITE_OG_IMAGE_PATH, SITE_TITLE, SITE_URL } from "@/lib/site";
-import { posts, formatDate } from "./posts";
+import { getPosts, formatDate } from "./posts";
 import {
   BLOG_TOPICS,
   getFeaturedPost,
@@ -40,6 +40,7 @@ export const metadata: Metadata = {
 };
 
 export default function BlogIndex() {
+  const posts = getPosts();
   const sorted = [...posts].sort((a, b) =>
     b.publishedAt.localeCompare(a.publishedAt),
   );

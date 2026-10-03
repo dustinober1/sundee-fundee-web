@@ -10,7 +10,7 @@ import { getTopicHubDecisionLinks } from "@/lib/internal-linking";
 import { buildBreadcrumbJsonLd, buildItemListJsonLd } from "@/lib/seo";
 import { SITE_TITLE, SITE_URL } from "@/lib/site";
 import { getTopicHub } from "@/lib/topic-hubs";
-import { formatDate, posts } from "../../posts";
+import { formatDate, getPosts } from "../../posts";
 import {
   BLOG_TOPICS,
   getBlogTopic,
@@ -68,7 +68,7 @@ export default async function BlogTopicPage({ params }: { params: Params }) {
 
   const topic = getBlogTopic(topicParam);
   const hub = getTopicHub(topic.slug);
-  const topicPosts = getTopicPosts(posts, topic.slug);
+  const topicPosts = getTopicPosts(getPosts(), topic.slug);
   const url = `${SITE_URL}${topic.href}`;
   const decisionLinks = getTopicHubDecisionLinks(topic.slug);
 

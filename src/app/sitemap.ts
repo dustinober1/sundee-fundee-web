@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { postModifiedAt, posts } from "./blog/posts";
+import { getPosts, postModifiedAt } from "./blog/posts";
 import { authors, getAuthorUrl } from "@/lib/authors";
 import { SITE_URL } from "@/lib/site";
 import { SEO_PAGES_LAST_MODIFIED, seoPages } from "@/lib/seo-pages";
@@ -12,6 +12,7 @@ function toDate(iso: string) {
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const posts = getPosts();
   const siteLastModified = posts[0]
     ? toDate(postModifiedAt(posts[0]))
     : new Date();

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { track } from "@vercel/analytics";
 import { buildAppStoreUrl } from "@/lib/app-store-links";
 
 type Props = {
@@ -104,6 +105,12 @@ export function SiteHeader({
               href={buildAppStoreUrl({ campaign: "site_header", content: "desktop_download" })}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => {
+                track("app_store_click", {
+                  campaign: "site_header",
+                  content: "desktop_download",
+                });
+              }}
               className="inline-flex h-10 items-center rounded-lg bg-orange px-5 text-sm font-medium text-cream hover:opacity-90"
             >
               Download
@@ -158,7 +165,13 @@ export function SiteHeader({
                 href={buildAppStoreUrl({ campaign: "site_header", content: "mobile_download" })}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => setOpen(false)}
+                onClick={() => {
+                  track("app_store_click", {
+                    campaign: "site_header",
+                    content: "mobile_download",
+                  });
+                  setOpen(false);
+                }}
                 className="inline-flex h-10 items-center justify-center rounded-lg bg-orange px-5 text-sm font-medium text-cream hover:opacity-90"
               >
                 Download

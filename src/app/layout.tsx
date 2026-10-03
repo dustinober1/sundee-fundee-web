@@ -1,19 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
 import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 import { SITE_DESCRIPTION, SITE_TITLE, SITE_URL } from "@/lib/site";
 
 const googleSiteVerification =
   process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
-
-// Cloudflare Web Analytics beacon token. Vercel Analytics records nothing on
-// the Cloudflare deployment, so page-view analytics come from Cloudflare
-// instead. Create the token in the Cloudflare dashboard (Web Analytics) and
-// set it as a build-time env var — NEXT_PUBLIC_* values inline at build.
-const cloudflareWebAnalyticsToken = process.env[
-  "NEXT_PUBLIC_CLOUDFLARE_WEB_ANALYTICS_TOKEN"
-] as string | undefined;
 
 const display = Playfair_Display({
   variable: "--font-display",
@@ -69,15 +61,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-cream text-navy">
         {children}
-        {cloudflareWebAnalyticsToken ? (
-          <Script
-            src="https://static.cloudflareinsights.com/beacon.min.js"
-            data-cf-beacon={JSON.stringify({
-              token: cloudflareWebAnalyticsToken,
-            })}
-            strategy="afterInteractive"
-          />
-        ) : null}
+        <Analytics />
       </body>
     </html>
   );
