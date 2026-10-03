@@ -4,7 +4,8 @@ Detailed documentation for the `sundeefundee.com` marketing site. The native iOS
 app is the product; this website exists to market it, rank for strength-training
 search queries, accept donations, and host printable workout plans.
 
-Last reviewed: 2026-10-02 (134 blog articles on `main`, commit `2c1a1dc`).
+Last reviewed: 2026-10-02 (134 blog articles on `main`, commit `2c1a1dc`;
+same-day defect-fix branch `fix/audit-defects`).
 
 ---
 
@@ -14,11 +15,11 @@ Last reviewed: 2026-10-02 (134 blog articles on `main`, commit `2c1a1dc`).
 | --- | --- |
 | Framework | Next.js 16.2.4 (App Router, React 19, TypeScript) |
 | Styling | Tailwind CSS 4 via `@tailwindcss/postcss` |
-| Hosting | Cloudflare via `@opennextjs/cloudflare` (worker + static assets) |
+| Hosting | **Vercel** (production; auto-deploys on merge). An OpenNext/Cloudflare bundle exists for a possible future migration — partial, see §12/§13 |
 | Payments | Stripe (donation checkout + webhook) |
 | Persistence | Supabase (optional, donation records only) |
 | Markdown | `react-markdown` + `remark-gfm` (blog bodies) |
-| Analytics | Cloudflare Web Analytics beacon (gated on `NEXT_PUBLIC_CLOUDFLARE_WEB_ANALYTICS_TOKEN`) |
+| Analytics | Vercel Web Analytics (`@vercel/analytics`) — works because the site runs on Vercel |
 | Tests | Vitest (unit/component), plus standalone Node SEO audit scripts |
 | Fonts | Playfair Display (display) + Inter (body) via `next/font` |
 
@@ -41,8 +42,9 @@ npm run deploy         # OpenNext Cloudflare deploy
 ```
 
 CI (`.github/workflows/ci.yml`) runs `npm ci → lint → typecheck → build` on
-every push/PR to `main`. Note that blog content validation (`loadPosts` throws
-on invalid articles) executes during `build`, so a bad article JSON fails CI.
+every push/PR to `main` on Node 22 (`.nvmrc`). Note that blog content
+validation (`getPosts` throws on invalid articles) executes during `build`,
+so a bad article JSON fails CI.
 
 ## 3. Directory map
 
@@ -146,12 +148,16 @@ slug, 134 files as of 2026-10-02). Schema (`BlogPost` in `posts.ts`):
 
 ### 4.2 Build-time validation
 
-`loadPosts()` runs at module import (i.e., during every build). It rejects the
-build when any article has: bad dates, future `publishedAt`, unknown
-`authorSlug`, author/Slug mismatch, missing sources, invalid source URLs
-(https only), health-adjacent posts lacking review or 2+ sources, missing
-`articleIntent` or `interactiveModules`, malformed interactive modules, or a
-duplicate slug. `BLOG_VALIDATION_DATE` env var can pin "today" for tests.
+`getPosts()` lazy-loads (and memoizes) every article via `loadPosts()` on
+first call. Because all consuming routes are statically rendered, that first
+call happens at build time. Validation rejects: bad dates, future
+`publishedAt`, unknown `authorSlug`, author/Slug mismatch, missing sources,
+invalid source URLs (https only), health-adjacent posts lacking review or 2+
+sources, missing `articleIntent` or `interactiveModules`, malformed
+interactive modules, or a duplicate slug. `BLOG_VALIDATION_DATE` env var can
+pin "today" for tests. Note: articles are read from disk with `fs`, so any
+route that re-renders blog content at request time cannot run on
+filesystem-less runtimes (Cloudflare Workers) — see §13.
 
 ### 4.3 Trust metadata synthesis (E-E-A-T)
 
@@ -321,16 +327,26 @@ is `favicon.ico`.
 | `NEXT_PUBLIC_SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY` | no | donation persistence |
 | `SITE_URL` / `NEXT_PUBLIC_SITE_URL` | no | Stripe redirect override |
 | `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` | no | Search Console meta tag |
-| `NEXT_PUBLIC_CLOUDFLARE_WEB_ANALYTICS_TOKEN` | no | Cloudflare Web Analytics beacon (build-time) |
 | `BLOG_VALIDATION_DATE` | no | pins "today" for blog validation in tests |
 
 ## 12. Deployment
 
-`npm run deploy` → `opennextjs-cloudflare build && deploy`. `wrangler.jsonc`
-points at `.open-next/worker.js` with `nodejs_compat`, an `ASSETS` binding, and
-observability enabled. Static assets are served from `.open-next/assets`.
-Cloudflare env secrets (Stripe, Supabase) are configured in the dashboard, not
-in the repo.
+**Production is Vercel.** Merges to `main` deploy automatically through the
+Vercel GitHub integration; PRs get preview deployments (SSO-gated). Response
+headers (`server: Vercel`, `x-vercel-id`) confirm the host — the historical
+"deploys through Cloudflare/OpenNext" claim in older docs was stale. Vercel
+env secrets (Stripe, Supabase, Search Console verification) are configured in
+the Vercel dashboard, not in the repo.
+
+The repo also carries an OpenNext/Cloudflare bundle (`open-next.config.ts`,
+`wrangler.jsonc`, `npm run preview`/`deploy`) for a possible future
+migration. `wrangler.jsonc` points at `.open-next/worker.js` with
+`nodejs_compat` and an `ASSETS` binding, and static assets are served from
+`.open-next/assets`. It is partially functional locally: the worker boots and
+serves static pages and all Open Graph image routes, but pages needing blog
+content at request time cannot render (see §13), and no incremental cache
+binding (R2/KV) is configured, so even prerendered app pages fail in local
+preview. Use Node 22 (`.nvmrc`) for build tooling.
 
 ## 13. Known gaps
 
@@ -346,16 +362,34 @@ Fixed on the `fix/audit-defects` branch (2026-10-02):
    and topic hubs; `SITE_OG_IMAGE_PATH` points at `/opengraph-image`.
    `/og-image.svg` remains on disk for legacy links only. Workout-plan pages
    keep their real cover PNGs.
-3. **Analytics.** `@vercel/analytics` records nothing on Cloudflare. Replaced
-   with the Cloudflare Web Analytics beacon in the root layout, gated on
-   `NEXT_PUBLIC_CLOUDFLARE_WEB_ANALYTICS_TOKEN` (create the token in the
-   Cloudflare dashboard under Web Analytics and set it as a build-time env
-   var — NEXT_PUBLIC_* values inline at build). The dead `track()` calls were
-   removed with the dependency.
+3. **Stale deployment story.** Older docs (and this guide's first draft)
+   claimed Cloudflare/OpenNext hosting, but production responds with
+   `server: Vercel` — the site runs on Vercel and Vercel Web Analytics works
+   there. `@vercel/analytics` was never a no-op in production; an interim
+   swap to a Cloudflare Web Analytics beacon was reverted once the real host
+   was identified. Docs now state the Vercel reality.
+4. **Cloudflare worker crash at startup.** `posts.ts` executed
+   `fs.readdirSync` at module top level; in the OpenNext bundle that crashes
+   workerd's module evaluation, killing every server route. Blog posts are
+   now lazy-loaded via memoized `getPosts()` (no `fs` at import time; first
+   call still happens at build time for statically rendered routes), and
+   `/rss.xml` is prerendered (`force-static`). The worker now boots and
+   serves static pages and all Open Graph image routes.
+5. **OpenNext CLI could not run on fresh installs.** `@opennextjs/cloudflare`
+   imports `esbuild` without declaring it, and this lockfile's two esbuild
+   versions both nest under their parents, so the import failed with
+   `ERR_MODULE_NOT_FOUND` (also produced local preview 500s that look like
+   code regressions but are not). `esbuild@0.25.4` is now an explicit
+   devDependency, hoisting it to the root.
 
 Still open:
 
-4. **Search haystack is narrow.** `matchesSearch` in `discovery.ts` checks
+6. **Cloudflare migration is incomplete** (only relevant if Cloudflare hosting
+   is ever wanted): blog content is read from disk at request time, which
+   filesystem-less Workers cannot do — build-time content inlining would be
+   required — and no incremental cache binding (R2/KV) is configured, so
+   prerendered app pages fail even in local preview.
+7. **Search haystack is narrow.** `matchesSearch` in `discovery.ts` checks
    title/description/bestFor/topic/intent labels — not article bodies or tags.
-5. **No web manifest / apple-touch-icon / modern icon set** (removed with the
+8. **No web manifest / apple-touch-icon / modern icon set** (removed with the
    old PWA surface; only `favicon.ico` remains).
