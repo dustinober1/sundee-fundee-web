@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { JsonLd } from "@/components/JsonLd";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
-import { formatDate, postModifiedAt, posts } from "@/app/blog/posts";
+import { formatDate, getPosts, postModifiedAt } from "@/app/blog/posts";
 import {
   absoluteUrl,
   buildBreadcrumbJsonLd,
@@ -50,6 +50,7 @@ export default async function AuthorPage({ params }: { params: Params }) {
     notFound();
   }
 
+  const posts = getPosts();
   const writtenPosts = posts
     .filter((post) => post.authorSlug === author.slug)
     .sort((a, b) => postModifiedAt(b).localeCompare(postModifiedAt(a)));

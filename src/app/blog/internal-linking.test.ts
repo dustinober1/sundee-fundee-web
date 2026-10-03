@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { posts } from "./posts";
+import { getPosts } from "./posts";
 import { BLOG_TOPICS } from "./taxonomy";
 import {
   getBlogPostInternalLinks,
@@ -10,6 +10,7 @@ import { seoPages } from "../../lib/seo-pages";
 
 describe("blog internal linking", () => {
   it("gives every post deterministic next-step links", () => {
+    const posts = getPosts();
     for (const post of posts) {
       const links = getBlogPostInternalLinks(post, posts);
 

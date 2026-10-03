@@ -13,7 +13,7 @@ import {
   buildItemListJsonLd,
   buildWebPageJsonLd,
 } from "@/lib/seo";
-import { SITE_OG_IMAGE_PATH, SITE_TITLE, SITE_URL } from "@/lib/site";
+import { SITE_TITLE, SITE_URL } from "@/lib/site";
 import { getSeoPage, seoPages } from "@/lib/seo-pages";
 
 type Params = Promise<{ seoSlug: string }>;
@@ -24,6 +24,8 @@ export function generateStaticParams() {
   return seoPages.map((page) => ({ seoSlug: page.slug }));
 }
 
+// Open Graph and Twitter images come from the route's opengraph-image.tsx
+// (file-convention metadata), which renders a per-page PNG card.
 export async function generateMetadata({
   params,
 }: {
@@ -33,7 +35,6 @@ export async function generateMetadata({
   const page = getSeoPage(seoSlug);
   if (!page) return {};
   const url = `${SITE_URL}/${page.slug}`;
-  const ogImage = page.ogImage ?? SITE_OG_IMAGE_PATH;
 
   return {
     title: page.title,
@@ -47,13 +48,11 @@ export async function generateMetadata({
       siteName: SITE_TITLE,
       title: page.title,
       description: page.description,
-      images: [ogImage],
     },
     twitter: {
       card: "summary_large_image",
       title: page.title,
       description: page.description,
-      images: [ogImage],
     },
   };
 }

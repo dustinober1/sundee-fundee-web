@@ -18,8 +18,8 @@ import { SITE_TITLE, SITE_URL } from "@/lib/site";
 import {
   formatDate,
   getPost,
+  getPosts,
   isHealthAdjacentPost,
-  posts,
   type BlogInteractivePlacement,
   type BlogPost,
 } from "../posts";
@@ -30,7 +30,7 @@ type Params = Promise<{ slug: string }>;
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return posts.map((post) => ({ slug: post.slug }));
+  return getPosts().map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({
@@ -97,6 +97,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
 
   const url = `${SITE_URL}/blog/${post.slug}`;
   const topic = getPrimaryTopic(post);
+  const posts = getPosts();
   const relatedPosts = getRelatedPosts(post, posts);
   const author = getAuthor(post.authorSlug);
   const reviewer = post.reviewedBy ? getAuthor(post.reviewedBy) : undefined;
