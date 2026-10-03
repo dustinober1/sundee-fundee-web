@@ -8,7 +8,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { INTERACTIVE_TYPE_LABELS } from "@/app/blog/discovery";
 import { getTopicHubDecisionLinks } from "@/lib/internal-linking";
 import { buildBreadcrumbJsonLd, buildItemListJsonLd } from "@/lib/seo";
-import { SITE_OG_IMAGE_PATH, SITE_TITLE, SITE_URL } from "@/lib/site";
+import { SITE_TITLE, SITE_URL } from "@/lib/site";
 import { getTopicHub } from "@/lib/topic-hubs";
 import { formatDate, posts } from "../../posts";
 import {
@@ -53,13 +53,11 @@ export async function generateMetadata({
       siteName: SITE_TITLE,
       title: hub.metaTitle,
       description: hub.metaDescription,
-      images: [SITE_OG_IMAGE_PATH],
     },
     twitter: {
       card: "summary_large_image",
       title: hub.metaTitle,
       description: hub.metaDescription,
-      images: [SITE_OG_IMAGE_PATH],
     },
   };
 }
