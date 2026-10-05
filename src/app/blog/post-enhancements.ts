@@ -294,6 +294,9 @@ const postEnhancementsBySlug: Record<string, BlogPostEnhancement> = {
   "cycle-syncing-workouts-evidence": {
     articleIntent: "compare-options",
   },
+  "cycle-tracking-perimenopause-strength-training": {
+    articleIntent: "timeline",
+  },
   "deload-week-programming-strength-training": {
     articleIntent: "decision-guide",
   },
