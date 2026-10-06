@@ -556,6 +556,9 @@ const postEnhancementsBySlug: Record<string, BlogPostEnhancement> = {
   "training-around-injuries-without-losing-progress": {
     articleIntent: "checklist",
   },
+  "trap-bar-vs-conventional-vs-sumo-deadlift": {
+    articleIntent: "compare-options",
+  },
   "warm-up-protocol-for-strength-training": {
     articleIntent: "protocol",
   },
