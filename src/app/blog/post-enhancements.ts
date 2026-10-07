@@ -219,6 +219,9 @@ const postEnhancementsBySlug: Record<string, BlogPostEnhancement> = {
   "barbell-strength-plan-for-women": {
     articleIntent: "compare-options",
   },
+  "body-recomposition-women-strength-training": {
+    articleIntent: "compare-options",
+  },
   "bad-warm-up-before-lifting": {
     articleIntent: "decision-guide",
   },
