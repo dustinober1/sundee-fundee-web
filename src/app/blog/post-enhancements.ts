@@ -369,6 +369,9 @@ const postEnhancementsBySlug: Record<string, BlogPostEnhancement> = {
   "menstrual-migraine-strength-training": {
     articleIntent: "symptom-audit",
   },
+  "nausea-before-period-strength-training": {
+    articleIntent: "symptom-audit",
+  },
   "menstrual-cycle-nutrition-strength-training": {
     articleIntent: "protocol",
   },
