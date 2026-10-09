@@ -468,6 +468,9 @@ const postEnhancementsBySlug: Record<string, BlogPostEnhancement> = {
   "should-women-use-a-lifting-belt": {
     articleIntent: "decision-guide",
   },
+  "should-you-use-lifting-straps": {
+    articleIntent: "decision-guide",
+  },
   "shoulder-pain-bench-press-modifications": {
     articleIntent: "checklist",
   },
