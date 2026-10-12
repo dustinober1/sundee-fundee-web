@@ -471,6 +471,9 @@ const postEnhancementsBySlug: Record<string, BlogPostEnhancement> = {
   "should-you-use-lifting-straps": {
     articleIntent: "decision-guide",
   },
+  "should-you-stretch-before-lifting": {
+    articleIntent: "compare-options",
+  },
   "shoulder-pain-bench-press-modifications": {
     articleIntent: "checklist",
   },
