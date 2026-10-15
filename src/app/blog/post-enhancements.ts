@@ -315,6 +315,9 @@ const postEnhancementsBySlug: Record<string, BlogPostEnhancement> = {
   "dizziness-before-period-strength-training": {
     articleIntent: "symptom-audit",
   },
+  "drop-sets-supersets-rest-pause-intensity-techniques": {
+    articleIntent: "compare-options",
+  },
   "double-progression-strength-training-women": {
     articleIntent: "protocol",
   },
