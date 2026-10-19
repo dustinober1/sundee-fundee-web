@@ -294,6 +294,9 @@ const postEnhancementsBySlug: Record<string, BlogPostEnhancement> = {
   "rest-between-sets-for-women-strength-training": {
     articleIntent: "protocol",
   },
+  "cycle-length-variation-strength-training": {
+    articleIntent: "compare-options",
+  },
   "cycle-phase-peak-strength-testing": {
     articleIntent: "timeline",
   },
