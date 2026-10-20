@@ -201,6 +201,9 @@ const postEnhancementsBySlug: Record<string, BlogPostEnhancement> = {
   "aqi-strength-training-women": {
     articleIntent: "decision-guide",
   },
+  "ankle-mobility-squat-depth": {
+    articleIntent: "checklist",
+  },
   "apple-health-data-for-strength-training": {
     articleIntent: "compare-options",
   },
