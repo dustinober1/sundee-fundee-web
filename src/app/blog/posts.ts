@@ -454,8 +454,22 @@ export function loadPosts({ todayIso = getTodayIso(), validate = true }: LoadPos
   return loadedPosts;
 }
 
-export const posts: BlogPost[] = loadPosts();
+let cachedPosts: BlogPost[] | undefined;
+
+/**
+ * Lazy-loaded on first call so that importing this module never touches `fs`.
+ * Routes that render posts are statically generated (fs runs at build time),
+ * but the module itself also ships in server bundles for runtimes without a
+ * filesystem (Cloudflare Workers), where a top-level `loadPosts()` would
+ * crash the worker at startup.
+ */
+export function getPosts(): BlogPost[] {
+  if (!cachedPosts) {
+    cachedPosts = loadPosts();
+  }
+  return cachedPosts;
+}
 
 export function getPost(slug: string): BlogPost | undefined {
-  return posts.find((p) => p.slug === slug);
+  return getPosts().find((p) => p.slug === slug);
 }

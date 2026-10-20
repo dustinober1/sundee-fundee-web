@@ -1,5 +1,9 @@
 import { SITE_TITLE, SITE_URL } from "@/lib/site";
-import { posts, postModifiedAt, toRfc822Date } from "../blog/posts";
+import { getPosts, postModifiedAt, toRfc822Date } from "../blog/posts";
+
+// Prerender at build time: the content is build-time data, so the feed is
+// fully static (edge-cacheable) and never needs a filesystem at runtime.
+export const dynamic = "force-static";
 
 function escapeXml(value: string): string {
   return value
@@ -11,7 +15,7 @@ function escapeXml(value: string): string {
 }
 
 export function GET() {
-  const items = posts
+  const items = getPosts()
     .map((post) => {
       const url = `${SITE_URL}/blog/${post.slug}`;
       return `

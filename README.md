@@ -79,5 +79,20 @@ App Store links and shared site metadata live in `src/lib/site.ts`.
 
 ## Deployment
 
-The repo still deploys through the existing Cloudflare/OpenNext path so hosting
-does not need to change.
+Production runs on **Vercel** (verified via response headers, October 2026):
+merges to `main` deploy automatically through the Vercel GitHub integration,
+and PRs get preview deployments. Analytics use Vercel Web Analytics
+(`@vercel/analytics`).
+
+The repo also carries a partial OpenNext/Cloudflare setup (`wrangler.jsonc`,
+`npm run preview` / `npm run deploy`) for a potential future migration. It is
+not the production host. Local preview limits (use Node 22 per `.nvmrc`):
+
+- Static pages and all Open Graph image routes serve correctly.
+- Pages that need blog content re-render from source on a cache miss
+  (home, blog index), which cannot work in Cloudflare Workers because article
+  JSON is read from disk at runtime. Prerendered-but-cached routes (RSS,
+  sitemap) fail in local preview only because no incremental-cache binding
+  (R2/KV) is configured. Completing the Cloudflare path would require
+  build-time content inlining plus cache bindings — see
+  `docs/CODEBASE.md` §13.

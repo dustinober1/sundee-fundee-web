@@ -3,6 +3,8 @@ import {
   filterBlogPosts,
   getPathwayPosts,
   BLOG_PATHWAYS,
+  blogSearchUrl,
+  searchQueryFromUrl,
   type BlogDiscoveryItem,
 } from "./discovery";
 
@@ -84,5 +86,17 @@ describe("blog discovery", () => {
     expect(getPathwayPosts(discoveryItems, pathway!).map((post) => post.slug)).toEqual([
       "strength-training-around-minor-injuries",
     ]);
+  });
+
+  it("reads the SearchAction query parameter from a blog URL", () => {
+    expect(searchQueryFromUrl("?query=cycle+phase")).toBe("cycle phase");
+    expect(searchQueryFromUrl("?query=%20hrv%20")).toBe("hrv");
+    expect(searchQueryFromUrl("?topic=recovery")).toBe("");
+    expect(searchQueryFromUrl("")).toBe("");
+  });
+
+  it("builds shareable blog search URLs", () => {
+    expect(blogSearchUrl("cycle phase")).toBe("/blog?query=cycle%20phase");
+    expect(blogSearchUrl("")).toBe("/blog");
   });
 });

@@ -33,6 +33,11 @@ const nextConfig: NextConfig = {
         headers: [staticAssetCacheHeader],
       },
       {
+        source: "/opengraph-image",
+        headers: [staticAssetCacheHeader],
+      },
+      {
+        // Legacy shared card; kept for links already circulating.
         source: "/og-image.svg",
         headers: [staticAssetCacheHeader],
       },
