@@ -402,6 +402,9 @@ const postEnhancementsBySlug: Record<string, BlogPostEnhancement> = {
   "missed-workouts-strength-training": {
     articleIntent: "decision-guide",
   },
+  "morning-vs-evening-strength-training": {
+    articleIntent: "decision-guide",
+  },
   "neck-trap-pain-overhead-press-modifications": {
     articleIntent: "checklist",
   },
