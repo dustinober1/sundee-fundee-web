@@ -123,6 +123,30 @@ export function buildWorkoutPlanJsonLd({
   };
 }
 
+export function buildCompoundProgramJsonLd({
+  name,
+  description,
+  url,
+}: {
+  name: string;
+  description: string;
+  url: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    name,
+    description,
+    url,
+    publisher: {
+      "@type": "Organization",
+      name: SITE_TITLE,
+      url: SITE_URL,
+    },
+    isAccessibleForFree: true,
+  };
+}
+
 export function buildBlogPostingJsonLd({
   post,
   url,

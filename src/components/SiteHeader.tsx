@@ -45,6 +45,13 @@ export function SiteHeader({
         Plans
       </Link>
       <Link
+        href="/compound-strength"
+        onClick={() => setOpen(false)}
+        className="text-sm font-medium text-navy hover:opacity-70"
+      >
+        Workouts
+      </Link>
+      <Link
         href="/blog"
         onClick={() => setOpen(false)}
         className="text-sm font-medium text-navy hover:opacity-70"

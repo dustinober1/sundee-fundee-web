@@ -247,6 +247,27 @@ export default function WorkoutPlansPage() {
           </div>
         </section>
 
+        <section className="px-6 py-16">
+          <div className="mx-auto flex max-w-6xl flex-col justify-between gap-6 rounded-[2rem] border border-border bg-surface p-8 md:flex-row md:items-center">
+            <div>
+              <h2 className="font-display text-2xl font-bold text-navy sm:text-3xl">
+                Prefer to train by the clock?
+              </h2>
+              <p className="mt-2 max-w-xl text-sm leading-7 text-muted">
+                Follow a free four-week compound strength block in 15 minutes,
+                30 minutes, 1 hour, or 2 hours a day — every lift with barbell
+                and dumbbell paths, right on the page.
+              </p>
+            </div>
+            <Link
+              href="/compound-strength"
+              className="inline-flex h-12 shrink-0 items-center justify-center rounded-lg bg-orange px-8 font-medium text-cream transition hover:opacity-90"
+            >
+              View weekly plans by time
+            </Link>
+          </div>
+        </section>
+
         <section id="adaptive" className="bg-navy px-6 py-24 text-cream">
           <div className="mx-auto max-w-6xl">
             <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">

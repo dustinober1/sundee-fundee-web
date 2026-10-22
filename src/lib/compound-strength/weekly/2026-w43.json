@@ -1,0 +1,191 @@
+{
+  "weekId": "2026-w43",
+  "startDate": "2026-10-19",
+  "title": "Volume Build — Squats, Hinges, and a New Finisher",
+  "intro": "Week 2 of the fall block turns the effort up one notch: same seven days as ever, one more rep on the main lifts, and a brand-new Friday finisher. Every lift still has a barbell and a dumbbell path — pick your lane and log what you actually did.",
+  "featuredTier": "30-minutes",
+  "weekTheme": "Volume build",
+  "coachNotes": [
+    "Week 1 set your baselines; this week adds reps at the same loads. Only add weight when every set of a lift finishes with two clean reps in reserve.",
+    "The new Friday finisher caps out at eight minutes. It should feel like hard cardio, not a second lifting session.",
+    "If Wednesday's deadlifts felt heavy last week, keep the same weight and earn the extra rep before reaching for another plate."
+  ],
+  "days": [
+    {
+      "day": "Monday",
+      "type": "training",
+      "focus": "Lower body — squat emphasis",
+      "structure": "Warm-up 5 min · Straight sets · Cooldown 5 min",
+      "exercises": [
+        {
+          "pattern": "Squat",
+          "name": "Back squat / Goblet squat",
+          "barbell": "4×8 @ RPE 7 · rest 2 min",
+          "dumbbell": "4×10 · rest 90 sec",
+          "note": "Same weight as last week, one rep more per set. Depth before load."
+        },
+        {
+          "pattern": "Hinge",
+          "name": "Romanian deadlift / Dumbbell Romanian deadlift",
+          "barbell": "3×10 @ RPE 7 · rest 90 sec",
+          "dumbbell": "3×12 · rest 90 sec",
+          "note": "Stop at the stretch your hamstrings control — no bouncing off the bottom."
+        },
+        {
+          "pattern": "Single-leg",
+          "name": "Rear-foot-elevated split squat / Same, dumbbell",
+          "barbell": "3×8/leg · rest 90 sec",
+          "dumbbell": "3×10/leg · rest 90 sec"
+        },
+        {
+          "pattern": "Carry",
+          "name": "Front-rack carry / Farmer carry",
+          "barbell": "3×35 sec · rest 75 sec",
+          "dumbbell": "3×40 yd · rest 75 sec"
+        },
+        {
+          "pattern": "Core",
+          "name": "Dead bug / Pallof press",
+          "barbell": "3×10/side · rest 45 sec",
+          "dumbbell": "3×10/side · rest 45 sec"
+        }
+      ]
+    },
+    {
+      "day": "Tuesday",
+      "type": "training",
+      "focus": "Upper body — push and pull",
+      "structure": "Warm-up 5 min · Straight sets · Cooldown 5 min",
+      "exercises": [
+        {
+          "pattern": "Push",
+          "name": "Bench press / Dumbbell bench press",
+          "barbell": "4×8 @ RPE 7 · rest 2 min",
+          "dumbbell": "4×10 · rest 90 sec",
+          "note": "Touch, pause, drive. The pause is one second — long enough to own the bottom."
+        },
+        {
+          "pattern": "Pull",
+          "name": "Bent-over row / One-arm row",
+          "barbell": "4×8 @ RPE 7 · rest 2 min",
+          "dumbbell": "4×10/side · rest 75 sec"
+        },
+        {
+          "pattern": "Push",
+          "name": "Overhead press / Half-kneeling one-arm press",
+          "barbell": "3×8 @ RPE 7 · rest 90 sec",
+          "dumbbell": "3×10/side · rest 75 sec"
+        },
+        {
+          "pattern": "Pull",
+          "name": "Inverted row / Chest-supported row",
+          "barbell": "3×10 · rest 75 sec",
+          "dumbbell": "3×12/side · rest 75 sec"
+        },
+        {
+          "pattern": "Core",
+          "name": "Plank / Suitcase hold",
+          "barbell": "3×40 sec · rest 45 sec",
+          "dumbbell": "3×30 sec/side · rest 45 sec"
+        }
+      ]
+    },
+    {
+      "day": "Wednesday",
+      "type": "active-recovery",
+      "focus": "25–40 minute walk + 5 minutes of hip, ankle, and shoulder mobility",
+      "exercises": []
+    },
+    {
+      "day": "Thursday",
+      "type": "training",
+      "focus": "Lower body — hinge emphasis",
+      "structure": "Warm-up 5 min · Straight sets · Cooldown 5 min",
+      "exercises": [
+        {
+          "pattern": "Hinge",
+          "name": "Deadlift / Dumbbell deadlift",
+          "barbell": "4×6 @ RPE 7 · rest 2–3 min",
+          "dumbbell": "4×8 · rest 2 min",
+          "note": "Full reset every rep. Five singles strung together, not one twenty-rep grind."
+        },
+        {
+          "pattern": "Hinge",
+          "name": "Barbell hip thrust / Dumbbell hip thrust",
+          "barbell": "3×10 @ RPE 7 · rest 90 sec",
+          "dumbbell": "3×12 · rest 90 sec"
+        },
+        {
+          "pattern": "Single-leg",
+          "name": "Single-leg Romanian deadlift / Same, dumbbell",
+          "barbell": "3×8/leg · rest 75 sec",
+          "dumbbell": "3×10/leg · rest 75 sec"
+        },
+        {
+          "pattern": "Carry",
+          "name": "Suitcase carry / Same, dumbbell",
+          "barbell": "3×30 sec/side · rest 75 sec",
+          "dumbbell": "3×40 yd/side · rest 75 sec"
+        },
+        {
+          "pattern": "Core",
+          "name": "Pallof press / Dead bug",
+          "barbell": "3×10/side · rest 45 sec",
+          "dumbbell": "3×10/side · rest 45 sec"
+        }
+      ]
+    },
+    {
+      "day": "Friday",
+      "type": "training",
+      "focus": "Full body + new finisher",
+      "structure": "Warm-up 5 min · Straight sets, then the finisher · Cooldown 5 min",
+      "exercises": [
+        {
+          "pattern": "Push",
+          "name": "Push press / Dumbbell thruster",
+          "barbell": "4×6 @ RPE 7 · rest 2 min",
+          "dumbbell": "4×8 · rest 90 sec",
+          "note": "Legs throw the weight; arms just steer it."
+        },
+        {
+          "pattern": "Squat",
+          "name": "Front squat / Goblet squat",
+          "barbell": "3×6 @ RPE 7 · rest 2 min",
+          "dumbbell": "3×10 · rest 90 sec"
+        },
+        {
+          "pattern": "Pull",
+          "name": "Chest-supported row / Chest-supported dumbbell row",
+          "barbell": "3×10 · rest 90 sec",
+          "dumbbell": "3×10/side · rest 75 sec"
+        },
+        {
+          "pattern": "Carry",
+          "name": "Farmer carry / Same, dumbbell",
+          "barbell": "3×30 sec · rest 90 sec",
+          "dumbbell": "3×40 yd · rest 90 sec"
+        },
+        {
+          "pattern": "Conditioning",
+          "name": "New finisher — swing and step ladder",
+          "barbell": "8 min: 10 swings + 6 step-ups/leg every 90 sec",
+          "dumbbell": "8 min: 12 swings + 6 step-ups/leg every 90 sec",
+          "note": "This week's fresh piece. Hard but repeatable — you should finish wanting one more round."
+        }
+      ]
+    },
+    {
+      "day": "Saturday",
+      "type": "active-recovery",
+      "focus": "Easy 30-minute walk, hike, or bike ride",
+      "exercises": []
+    },
+    {
+      "day": "Sunday",
+      "type": "rest",
+      "focus": "Full rest. Sleep in, eat well, and let the week settle.",
+      "exercises": []
+    }
+  ]
+}
