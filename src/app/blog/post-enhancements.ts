@@ -441,6 +441,9 @@ const postEnhancementsBySlug: Record<string, BlogPostEnhancement> = {
   "period-products-for-working-out": {
     articleIntent: "compare-options",
   },
+  "period-syncing-myth": {
+    articleIntent: "compare-options",
+  },
   "pms-bloating-strength-training": {
     articleIntent: "checklist",
   },
