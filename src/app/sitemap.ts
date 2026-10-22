@@ -5,6 +5,10 @@ import { SITE_URL } from "@/lib/site";
 import { SEO_PAGES_LAST_MODIFIED, seoPages } from "@/lib/seo-pages";
 import { trainingTools } from "@/lib/training-tools";
 import { workoutPlans } from "@/lib/workout-plans";
+import {
+  COMPOUND_STRENGTH_HUB_PATH,
+  compoundPrograms,
+} from "@/lib/compound-strength";
 import { BLOG_TOPICS } from "./blog/taxonomy";
 
 function toDate(iso: string) {
@@ -56,6 +60,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.78,
     }),
   );
+  const compoundProgramEntries: MetadataRoute.Sitemap = compoundPrograms.map(
+    (program): MetadataRoute.Sitemap[number] => ({
+      url: `${SITE_URL}${COMPOUND_STRENGTH_HUB_PATH}/${program.slug}`,
+      lastModified: siteLastModified,
+      changeFrequency: "monthly",
+      priority: 0.75,
+    }),
+  );
   const authorEntries: MetadataRoute.Sitemap = authors.map(
     (author): MetadataRoute.Sitemap[number] => ({
       url: `${SITE_URL}${getAuthorUrl(author.slug)}`,
@@ -89,6 +101,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: siteLastModified,
       changeFrequency: "monthly" as const,
       priority: 0.85,
+    },
+    {
+      url: `${SITE_URL}${COMPOUND_STRENGTH_HUB_PATH}`,
+      lastModified: siteLastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
     },
     {
       url: `${SITE_URL}/tools`,
@@ -172,6 +190,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...topicEntries,
     ...toolEntries,
     ...workoutPlanEntries,
+    ...compoundProgramEntries,
     ...authorEntries,
     ...postEntries,
   ];
