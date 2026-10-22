@@ -15,6 +15,7 @@ import {
   COMPOUND_STRENGTH_HUB_PATH,
   compoundPrograms,
 } from "@/lib/compound-strength";
+import { resolveCurrentWeek, weekDateRange } from "@/lib/compound-strength/weekly";
 
 export const metadata: Metadata = {
   title: "Compound Strength Weekly Plans by Time",
@@ -91,6 +92,8 @@ const faqItems = [
 ];
 
 export default function CompoundStrengthPage() {
+  const currentWeek = resolveCurrentWeek();
+
   return (
     <>
       <JsonLd
@@ -174,6 +177,27 @@ export default function CompoundStrengthPage() {
             </div>
           </div>
         </section>
+
+        {currentWeek ? (
+          <section className="border-y border-border bg-gold/10 px-6 py-10">
+            <div className="mx-auto flex max-w-6xl flex-col justify-between gap-6 md:flex-row md:items-center">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-orange">
+                  New · Week of {weekDateRange(currentWeek.startDate)}
+                </p>
+                <h2 className="font-display mt-2 text-2xl font-bold text-navy sm:text-3xl">
+                  {currentWeek.title}
+                </h2>
+              </div>
+              <Link
+                href={`${COMPOUND_STRENGTH_HUB_PATH}/this-week`}
+                className="inline-flex h-12 shrink-0 items-center justify-center rounded-lg bg-orange px-8 font-medium text-cream transition hover:opacity-90"
+              >
+                See this week&apos;s workout
+              </Link>
+            </div>
+          </section>
+        ) : null}
 
         <section id="tiers" className="bg-surface px-6 py-24">
           <div className="mx-auto max-w-6xl">

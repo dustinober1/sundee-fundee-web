@@ -109,6 +109,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${SITE_URL}${COMPOUND_STRENGTH_HUB_PATH}/this-week`,
+      lastModified: siteLastModified,
+      changeFrequency: "weekly" as const,
+      priority: 0.7,
+    },
+    {
+      url: `${SITE_URL}${COMPOUND_STRENGTH_HUB_PATH}/archive`,
+      lastModified: siteLastModified,
+      changeFrequency: "weekly" as const,
+      priority: 0.5,
+    },
+    {
       url: `${SITE_URL}/tools`,
       lastModified: siteLastModified,
       changeFrequency: "monthly" as const,
