@@ -14,12 +14,17 @@ export function GET() {
   const items = posts
     .map((post) => {
       const url = `${SITE_URL}/blog/${post.slug}`;
+      // Pinterest auto-publish and most RSS consumers read item images from
+      // enclosure/media:content; the og:image PNG card is the pin image.
+      const imageUrl = `${SITE_URL}/blog/${post.slug}/opengraph-image`;
       return `
         <item>
           <title>${escapeXml(post.title)}</title>
           <link>${url}</link>
           <guid>${url}</guid>
           <description>${escapeXml(post.description)}</description>
+          <enclosure url="${imageUrl}" length="0" type="image/png" />
+          <media:content url="${imageUrl}" type="image/png" medium="image" />
           <pubDate>${toRfc822Date(post.publishedAt)}</pubDate>
           <lastBuildDate>${toRfc822Date(postModifiedAt(post))}</lastBuildDate>
         </item>`;
@@ -27,7 +32,7 @@ export function GET() {
     .join("");
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
-    <rss version="2.0">
+    <rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
       <channel>
         <title>${escapeXml(`${SITE_TITLE} Blog`)}</title>
         <link>${SITE_URL}/blog</link>
