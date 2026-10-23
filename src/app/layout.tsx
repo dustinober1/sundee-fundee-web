@@ -39,9 +39,11 @@ export const metadata: Metadata = {
       "application/rss+xml": `${SITE_URL}/rss.xml`,
     },
   },
-  ...(googleSiteVerification
-    ? { verification: { google: googleSiteVerification } }
-    : {}),
+  verification: {
+    // Claimed account meta tag from Pinterest (Settings → Claimed accounts)
+    other: { "p:domain_verify": "95ffd6d57c7a0a3662fccc26f49f93fc" },
+    ...(googleSiteVerification ? { google: googleSiteVerification } : {}),
+  },
 };
 
 export const viewport: Viewport = {
