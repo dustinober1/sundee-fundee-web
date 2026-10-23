@@ -282,6 +282,9 @@ const postEnhancementsBySlug: Record<string, BlogPostEnhancement> = {
   "hormone-bloodwork-cycle-timing-lifters": {
     articleIntent: "metric-explainer",
   },
+  "how-much-water-strength-training-hydration": {
+    articleIntent: "protocol",
+  },
   "how-close-to-failure-strength-training-women": {
     articleIntent: "compare-options",
   },
