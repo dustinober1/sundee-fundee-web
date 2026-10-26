@@ -261,6 +261,9 @@ const postEnhancementsBySlug: Record<string, BlogPostEnhancement> = {
   "fasted-morning-strength-training-women": {
     articleIntent: "compare-options",
   },
+  "free-weights-vs-machines-strength-training": {
+    articleIntent: "compare-options",
+  },
   "four-day-upper-lower-strength-plan-women": {
     articleIntent: "protocol",
   },
