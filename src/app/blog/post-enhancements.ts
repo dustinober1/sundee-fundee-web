@@ -204,6 +204,9 @@ const postEnhancementsBySlug: Record<string, BlogPostEnhancement> = {
   "ankle-mobility-squat-depth": {
     articleIntent: "checklist",
   },
+  "anovulatory-cycles-strength-training": {
+    articleIntent: "symptom-audit",
+  },
   "apple-health-data-for-strength-training": {
     articleIntent: "compare-options",
   },
