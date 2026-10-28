@@ -420,6 +420,9 @@ const postEnhancementsBySlug: Record<string, BlogPostEnhancement> = {
   "night-shift-strength-training-women": {
     articleIntent: "decision-guide",
   },
+  "omega-3-strength-training-women": {
+    articleIntent: "compare-options",
+  },
   "one-rep-max-testing-timing-and-protocol": {
     articleIntent: "timeline",
   },
