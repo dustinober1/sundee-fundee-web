@@ -228,6 +228,9 @@ const postEnhancementsBySlug: Record<string, BlogPostEnhancement> = {
   "body-recomposition-women-strength-training": {
     articleIntent: "compare-options",
   },
+  "body-composition-measurement-methods-strength-training": {
+    articleIntent: "metric-explainer",
+  },
   "bad-warm-up-before-lifting": {
     articleIntent: "decision-guide",
   },
