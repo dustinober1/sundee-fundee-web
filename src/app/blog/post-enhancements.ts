@@ -261,6 +261,9 @@ const postEnhancementsBySlug: Record<string, BlogPostEnhancement> = {
   "elbow-pain-pressing-strength-training": {
     articleIntent: "checklist",
   },
+  "exercise-for-period-cramps-evidence": {
+    articleIntent: "compare-options",
+  },
   "endometriosis-strength-training": {
     articleIntent: "symptom-audit",
   },
